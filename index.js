@@ -12,12 +12,14 @@ class Calculator{
     }
 
     delete(){
-
+        this.firstNumberElement.innerText= this.firstNumberElement.innerText.slice(0,-1)
     }
 
     // add number
     appendNumber(number){
-        this.firstNumberElement.innerText = this.firstNumberElement.innerText + number.toString()
+       if(number === "." && this.firstNumberElement.innerText.includes(".")) return;
+    
+       this.firstNumberElement.innerText = this.firstNumberElement.innerText + number.toString()
     }
 
     // + % * -
@@ -85,16 +87,14 @@ operationButtons.forEach(button=>{
 
 
 equalsButton.addEventListener("click",()=>{
-    console.log('Equal', equalsButton.innerText)
     calculator.compute();
 })
 
 deleteButton.addEventListener("click",()=>{
-    console.log('Delete', deleteButton.innerText)
+    calculator.delete();
 })
 
 allClearButton.addEventListener("click",()=>{
-    console.log('all clear')
     calculator.clear();
 })
 
